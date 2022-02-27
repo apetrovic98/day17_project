@@ -20,13 +20,20 @@ public class Admin {
 		this.password = password;
 	}
 
+	public String getPassword() {
+		return password;
+	}
+	public String getUsername() {
+		return username;
+	}
+	
 	public void showEditors() {
 		System.out.println(editors);
 	}
 
-	public void showEditor(Editor editor) {
+	public void showEditor(String username) {
 		for (Editor editorMember : editors) {
-			if (editorMember.equals(editor)) {
+			if (editorMember.getUsername().equals(username)) {
 				System.out.println(editorMember);
 				break;
 			}
@@ -137,8 +144,13 @@ public class Admin {
 		}
 	}
 
-	public void deleteEditor(Editor editor) {
-		editors.remove(editor);
+	public void deleteEditor(String username) {
+		for (Editor editorMember : editors) {
+			if (editorMember.getUsername().equals(username)) {
+				editors.remove(editorMember);
+				break;
+			}
+		}
 	}
 
 	public List<Editor> getEditors() {
