@@ -1,39 +1,39 @@
 package source;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Editor {
-	static List<Editor> editors = new ArrayList<Editor>();
-	private String ime;
-	private String prezime;
+	private String firstName;
+	private String lastName;
 	private String username;
-	private String password;
+	private final String password;
 	private Role role;
 	
-	public Editor(String ime, String prezime, String username, String password, Role role) {
+	
+
+	public Editor(String firstName, String lastName, String username, String password) {
 		super();
-		this.ime = ime;
-		this.prezime = prezime;
+		this.firstName = firstName;
+		this.lastName = lastName;
 		this.username = username;
 		this.password = password;
-		this.role = role;
+		this.role = Role.EDITOR;
 	}
 
-	public static List<Editor> getEditors() {
-		return editors;
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public static void setEditors(List<Editor> editors) {
-		Editor.editors = editors;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
-	public String getIme() {
-		return ime;
+	public String getLastName() {
+		return lastName;
 	}
 
-	public String getPrezime() {
-		return prezime;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
 	public String getUsername() {
@@ -47,63 +47,44 @@ public class Editor {
 	public Role getRole() {
 		return role;
 	}
-	
-	public void setIme(String ime) {
-		this.ime = ime;
-	}
-
-	public void setPrezime(String prezime) {
-		this.prezime = prezime;
-	}
 
 	public void setUsername(String username) {
 		this.username = username;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public void setRole(Role role) {
-		this.role = role;
-	}
-
 	@Override
 	public int hashCode() {
-		return 31*ime.hashCode()+17*prezime.hashCode()+13*password.hashCode() + 7*role.hashCode();
+		return 31 * firstName.hashCode() + 17 * lastName.hashCode() + 13 * password.hashCode() + 7 * role.hashCode();
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		Editor editor = (Editor) obj;
-		if(this==obj) 
+		if (this == obj)
 			return true;
-		
-		if(obj==null)
+
+		if (obj == null)
 			return false;
-		
-		if(! (obj instanceof Editor))
+
+		if (!(obj instanceof Editor))
 			return false;
-		if(!editor.username.equals(username)){
+		if (!editor.username.equals(username)) {
 			return false;
-		}else if(!editor.ime.equals(ime)) {
+		} else if (!editor.firstName.equals(firstName)) {
 			return false;
-		}else if(!editor.prezime.equals(prezime)) {
+		} else if (!editor.lastName.equals(lastName)) {
 			return false;
-		}else if(!editor.password.equals(password)) {
+		} else if (!editor.password.equals(password)) {
 			return false;
-		}else if(editor.role!=role) {
+		} else if (editor.role != role) {
 			return false;
 		}
 		return true;
 	}
-	
-	
+
 	@Override
 	public String toString() {
-		return "Editor [ime=" + ime + ", prezime=" + prezime + ", username=" + username + ", password=" + password
-				+ ", role=" + role + "]";
+		return "Editor [first name =" + firstName + ", last name=" + lastName + ", username=" + username + "]";
 	}
-	
-	
+
 }
